@@ -1,0 +1,28 @@
+#Dependências do Node
+node_modules/
+
+#Logs de erro
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+#Builds e arquivos gerados (TanStack Start / Vite / Vinxi)
+dist/
+build/
+.output/
+.vinxi/
+
+#Variáveis de Ambiente (NUNCA commitar senhas e chaves)
+.env
+.env.*
+!.env.example
+
+#Banco de Dados Local (Prisma / SQLite)
+*.db
+*.db-journal
+prisma/dev.db
+prisma/dev.db-journal
+
+#Arquivos do Sistema Operacional
+.DS_Store
+Thumbs.db
