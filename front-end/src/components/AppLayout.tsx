@@ -9,6 +9,7 @@ import {
     Settings,
     LogOut,
     Truck,
+    Users,
 } from "lucide-react";
 import { useEffect, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
@@ -50,7 +51,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
 
     return (
         <div className="flex min-h-screen bg-slate-50 text-slate-900">
-            <aside className="hidden w-72 flex-col border-r border-slate-800 bg-slate-950 text-white md:flex">
+            <aside className="hidden w-72 flex-col border-r border-slate-800 bg-slate-950 text-white md:flex sticky top-0 h-screen overflow-y-auto">
                 <div className="border-b border-white/10 px-5 py-5">
                     <div className="flex items-center gap-3 rounded-2xl bg-white/5 p-3">
                         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white">
@@ -76,7 +77,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
                 </div>
 
                 <nav className="flex-1 space-y-1 px-4 py-5">
-                    {nav.map((item) => {
+                    {[...nav, ...(session?.user?.role === 'admin' ? [{ to: "/usuarios", label: "Usuários", icon: Users }] : [])].map((item) => {
                         const Icon = item.icon;
                         const active = item.to === "/" ? path === "/" : path.startsWith(item.to);
 

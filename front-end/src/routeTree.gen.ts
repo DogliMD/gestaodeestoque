@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UsuariosRouteImport } from './routes/usuarios'
 import { Route as ReposicaoRouteImport } from './routes/reposicao'
 import { Route as RelatoriosRouteImport } from './routes/relatorios'
 import { Route as MovimentacaoRouteImport } from './routes/movimentacao'
@@ -19,6 +20,11 @@ import { Route as ConfiguracoesRouteImport } from './routes/configuracoes'
 import { Route as AlertasRouteImport } from './routes/alertas'
 import { Route as IndexRouteImport } from './routes/index'
 
+const UsuariosRoute = UsuariosRouteImport.update({
+  id: '/usuarios',
+  path: '/usuarios',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReposicaoRoute = ReposicaoRouteImport.update({
   id: '/reposicao',
   path: '/reposicao',
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/movimentacao': typeof MovimentacaoRoute
   '/relatorios': typeof RelatoriosRoute
   '/reposicao': typeof ReposicaoRoute
+  '/usuarios': typeof UsuariosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -86,6 +93,7 @@ export interface FileRoutesByTo {
   '/movimentacao': typeof MovimentacaoRoute
   '/relatorios': typeof RelatoriosRoute
   '/reposicao': typeof ReposicaoRoute
+  '/usuarios': typeof UsuariosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -98,6 +106,7 @@ export interface FileRoutesById {
   '/movimentacao': typeof MovimentacaoRoute
   '/relatorios': typeof RelatoriosRoute
   '/reposicao': typeof ReposicaoRoute
+  '/usuarios': typeof UsuariosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,6 +120,7 @@ export interface FileRouteTypes {
     | '/movimentacao'
     | '/relatorios'
     | '/reposicao'
+    | '/usuarios'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/movimentacao'
     | '/relatorios'
     | '/reposicao'
+    | '/usuarios'
   id:
     | '__root__'
     | '/'
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/movimentacao'
     | '/relatorios'
     | '/reposicao'
+    | '/usuarios'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -145,10 +157,18 @@ export interface RootRouteChildren {
   MovimentacaoRoute: typeof MovimentacaoRoute
   RelatoriosRoute: typeof RelatoriosRoute
   ReposicaoRoute: typeof ReposicaoRoute
+  UsuariosRoute: typeof UsuariosRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/usuarios': {
+      id: '/usuarios'
+      path: '/usuarios'
+      fullPath: '/usuarios'
+      preLoaderRoute: typeof UsuariosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reposicao': {
       id: '/reposicao'
       path: '/reposicao'
@@ -225,6 +245,7 @@ const rootRouteChildren: RootRouteChildren = {
   MovimentacaoRoute: MovimentacaoRoute,
   RelatoriosRoute: RelatoriosRoute,
   ReposicaoRoute: ReposicaoRoute,
+  UsuariosRoute: UsuariosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -23,6 +23,7 @@ import { historicoRoutes } from './routes/historico.routes';
 import { procedimentosRoutes } from './routes/procedimentos.routes';
 import { reposicoesRoutes } from './routes/reposicoes.routes';
 import { authRoutes } from './routes/auth.routes';
+import { usuariosRoutes } from './routes/usuarios.routes';
 
 // Rota de teste
 app.get('/', (req: Request, res: Response) => {
@@ -36,6 +37,7 @@ app.use('/api/estoque', estoqueRoutes);
 app.use('/api/historico', historicoRoutes);
 app.use('/api/procedimentos', procedimentosRoutes);
 app.use('/api/reposicoes', reposicoesRoutes);
+app.use('/api/usuarios', usuariosRoutes);
 
 // Inicialização do servidor
 app.listen(port, "0.0.0.0", () => {

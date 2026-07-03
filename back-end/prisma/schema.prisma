@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider  = "postgresql"
 }
 
 model Material {
@@ -103,4 +103,15 @@ model ReposicaoChegada {
 
   @@index([reposicao_id])
   @@map("reposicao_chegadas")
+}
+
+model Usuario {
+  id        String   @id @default(uuid())
+  nome      String
+  email     String   @unique
+  senha     String
+  role      String   @default("user")
+  criado_em DateTime @default(now())
+
+  @@map("usuarios")
 }
